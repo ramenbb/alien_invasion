@@ -15,10 +15,14 @@ def run_game():
 	pygame.display.set_caption("Alien Invasion")
 	bg_color = (230, 230, 230)
 
-	# Make a ship.
+	# Make a ship, a group of bullets, and a group of aliens.
 	ship = Ship(ai_settings, screen)
-	# Make a group to store bullets in.
 	bullets = Group()
+	aliens = Group()
+
+	# Create the fleet of aliens.
+	gf.create_fleet(ai_settings, screen, ship, aliens)
+
 
 	# Start the main loop for the game.
 	while True:
@@ -26,11 +30,7 @@ def run_game():
 		gf.check_events(ai_settings, screen, ship, bullets)
 		ship.update()
 		bullets.update()
-		gf.update_screen(ai_settings,screen, ship, bullets)
-
-		# Get rid of bullets that have disappeared.
-		for bullet in bullets.copy():
-			if bullet.rect.bottom <= 0:
-				bullets.remove(bullet)
+		gf.update_screen(ai_settings, screen, ship, aliens, bullets)
+		gf.update_bullets(bullets)
 
 run_game()
