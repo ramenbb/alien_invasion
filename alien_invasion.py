@@ -4,7 +4,7 @@ import pygame
 from pygame.sprite import Group
 
 from settings import Settings
-from ship import Ship
+from rain import Raindrop
 import game_functions as gf
 
 def run_game():
@@ -15,23 +15,17 @@ def run_game():
 	pygame.display.set_caption("Steady rain")
 	bg_color = (230, 230, 230)
 
-	# Make a ship, a group of bullets, and a group of raindrops.
-	ship = Ship(ai_settings, screen)
-	bullets = Group()
 	rains = Group()
+	rain = Raindrop(ai_settings, screen)
 
 	# Create the cloud.
-	gf.create_cloud(ai_settings, screen, ship, rains)
+	gf.create_cloud(ai_settings, screen, rains)
 
 
 	# Start the main loop for the game.
 	while True:
 
-		gf.check_events(ai_settings, screen, ship, bullets)
-		ship.update()
-		bullets.update()
-		gf.update_screen(ai_settings, screen, ship, rains, bullets)
-		gf.update_bullets(bullets)
+		gf.update_screen(ai_settings, screen, rain)
 		gf.update_rains(ai_settings, rains)
 
 run_game()

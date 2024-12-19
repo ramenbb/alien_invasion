@@ -16,8 +16,8 @@ class Raindrop(Sprite):
 		self.rect = self.image.get_rect()
 
 		# Start each new raindrop near the top left of the screen.
-		#self.rect.x = self.rect.width
-		#self.rect.y = self.rect.height
+		self.rect.x = self.rect.width
+		self.rect.y = self.rect.height
 
 		# Store the raindrop's exact position.
 		self.y = float(self.rect.y)
