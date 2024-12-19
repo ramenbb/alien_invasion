@@ -12,16 +12,16 @@ def run_game():
 	pygame.init()
 	ai_settings = Settings()
 	screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
-	pygame.display.set_caption("Alien Invasion")
+	pygame.display.set_caption("Steady rain")
 	bg_color = (230, 230, 230)
 
-	# Make a ship, a group of bullets, and a group of aliens.
+	# Make a ship, a group of bullets, and a group of raindrops.
 	ship = Ship(ai_settings, screen)
 	bullets = Group()
-	aliens = Group()
+	rains = Group()
 
-	# Create the fleet of aliens.
-	gf.create_fleet(ai_settings, screen, ship, aliens)
+	# Create the cloud.
+	gf.create_cloud(ai_settings, screen, ship, rains)
 
 
 	# Start the main loop for the game.
@@ -30,8 +30,8 @@ def run_game():
 		gf.check_events(ai_settings, screen, ship, bullets)
 		ship.update()
 		bullets.update()
-		gf.update_screen(ai_settings, screen, ship, aliens, bullets)
+		gf.update_screen(ai_settings, screen, ship, rains, bullets)
 		gf.update_bullets(bullets)
-		gf.update_aliens(ai_settings, aliens)
+		gf.update_rains(ai_settings, rains)
 
 run_game()
